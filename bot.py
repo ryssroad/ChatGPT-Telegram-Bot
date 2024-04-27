@@ -537,7 +537,6 @@ async def start(update, context): # 当用户输入/start时，返回文本
     message = (
         "Я бот ChatGPT~\n\n"
         # "посетите https://github.com/yym68686/ChatGPT-Telegram-Bot 查看源码\n\n"
-        # "有 bug 可以联系 @yym68686"
     )
     await update.message.reply_html(rf"Hi {user.mention_html()} ! I am an Assistant, a large language model trained by OpenAI. I will do my best to help answer your questions.",)
     await update.message.reply_text(escape(message), parse_mode='MarkdownV2', disable_web_page_preview=True)
