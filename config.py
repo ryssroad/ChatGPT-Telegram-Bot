@@ -166,27 +166,27 @@ if CUSTOM_MODELS_LIST:
 buttons = create_buttons(initial_model)
 buttons.append(
     [
-        InlineKeyboardButton("返回上一级", callback_data="返回上一级"),
+        InlineKeyboardButton("Вернуться", callback_data="Венуться"),
     ],
 )
 
 def update_first_buttons_message():
     history = "✅" if PASS_HISTORY else "☑️"
-    language = "🇨🇳 中文" if LANGUAGE == "Simplified Chinese" else "🇺🇸 English"
+    language = "🇷🇺 RU" if LANGUAGE == "Russian" else "🇺🇸 English"
 
     first_buttons = [
         [
-            InlineKeyboardButton("更换问答模型", callback_data="更换问答模型"),
+            InlineKeyboardButton("Cмена модели", callback_data="Cмена модели"),
             InlineKeyboardButton(language, callback_data="language"),
-            InlineKeyboardButton(f"历史记录 {history}", callback_data="PASS_HISTORY"),
+            InlineKeyboardButton(f"История {history}", callback_data="PASS_HISTORY"),
         ],
         [
-            InlineKeyboardButton(f"搜索 {get_plugins_status('SEARCH_USE_GPT')}", callback_data='SEARCH_USE_GPT'),
-            InlineKeyboardButton(f"当前时间 {get_plugins_status('DATE')}", callback_data='DATE'),
+            InlineKeyboardButton(f"Поиск {get_plugins_status('SEARCH_USE_GPT')}", callback_data='SEARCH_USE_GPT'),
+            InlineKeyboardButton(f"Текущее время {get_plugins_status('DATE')}", callback_data='DATE'),
         ],
         [
-            InlineKeyboardButton(f"URL 总结 {get_plugins_status('URL')}", callback_data='URL'),
-            InlineKeyboardButton(f"版本信息 {get_plugins_status('VERSION')}", callback_data='VERSION'),
+            InlineKeyboardButton(f"URL Резюме {get_plugins_status('URL')}", callback_data='URL'),
+            InlineKeyboardButton(f"Информация о версии {get_plugins_status('VERSION')}", callback_data='VERSION'),
             # InlineKeyboardButton(f"gpt4free {get_plugins_status('USE_G4F')}", callback_data='USE_G4F'),
         ],
     ]
