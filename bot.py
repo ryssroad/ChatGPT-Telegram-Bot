@@ -9,7 +9,7 @@ import utils.decorators as decorators
 from md2tgmd import escape
 from utils.chatgpt2api import Chatbot as GPT
 from utils.chatgpt2api import claudebot, groqbot, claude3bot, gemini_bot
-from utils.prompt import translator_en2ru_prompt, translator_prompt, claude3_doc_assistant_prompt
+from utils.prompt import translator_en2zh_prompt, translator_prompt, claude3_doc_assistant_prompt
 from telegram.constants import ChatAction
 from utils.plugins import Document_extract, get_encode_image, claude_replace
 from telegram import BotCommand, InlineKeyboardMarkup, InlineQueryResultArticle, InputTextMessageContent
@@ -104,7 +104,7 @@ async def command_bot(update, context, language=None, prompt=translator_prompt, 
                 if language == "english":
                     prompt = prompt.format(language)
                 else:
-                    prompt = translator_en2ru_prompt
+                    prompt = translator_en2zh_prompt
             message = prompt + message
         if message:
             if reply_to_message_text and update_message.reply_to_message.from_user.is_bot:
@@ -560,8 +560,8 @@ async def post_init(application: Application) -> None:
         BotCommand('pic', 'Generate image'),
         # BotCommand('copilot', 'Advanced search mode'),
         BotCommand('search', 'search Google or duckduckgo'),
-        BotCommand('en2ru', 'translate to Chinese'),
-        BotCommand('ru2en', 'translate to English'),
+        BotCommand('en2zh', 'translate to Chinese'),
+        BotCommand('zh2en', 'translate to English'),
         BotCommand('start', 'Start the bot'),
         BotCommand('reset', 'Reset the bot'),
     ])
@@ -590,8 +590,8 @@ if __name__ == '__main__':
     # application.add_handler(CommandHandler("search", lambda update, context: search(update, context, title=f"`🤖️ {config.GPT_ENGINE}`\n\n", robot=config.ChatGPTbot)))
     application.add_handler(CallbackQueryHandler(button_press))
     application.add_handler(CommandHandler("reset", reset_chat))
-    application.add_handler(CommandHandler("en2ru", lambda update, context: command_bot(update, context, "Russian", robot=config.translate_bot)))
-    application.add_handler(CommandHandler("ru2en", lambda update, context: command_bot(update, context, "english", robot=config.translate_bot)))
+    application.add_handler(CommandHandler("en2zh", lambda update, context: command_bot(update, context, "Russian", robot=config.translate_bot)))
+    application.add_handler(CommandHandler("zh2en", lambda update, context: command_bot(update, context, "english", robot=config.translate_bot)))
     # application.add_handler(CommandHandler("copilot", lambda update, context: command_bot(update, context, None, None, title=f"`🤖️ {config.GPT_ENGINE}`\n\n", robot=config.copilot_bot)))
     application.add_handler(CommandHandler("info", info))
     application.add_handler(InlineQueryHandler(inlinequery))
